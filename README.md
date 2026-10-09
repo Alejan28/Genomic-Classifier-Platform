@@ -122,8 +122,6 @@ from pyngrok import ngrok
 public_url = ngrok.connect(8501, proto="http")
 print(f"Stable App Link: {public_url.public_url}")
 ```
-### 5. App Functionality
- A video depicting the app's functionality is available at: https://youtu.be/p7lane6-f3g?si=74P1fBxfboHXPq-7
 ---
 
 ## 💡 Features
@@ -131,3 +129,6 @@ print(f"Stable App Link: {public_url.public_url}")
 * **Sequence Validation**: Automatically ignores/warns the user about sequences shorter than the required 500 bp.
 * **Interactive Table**: Displays final classification domains and species with associated model confidence scores.
 * **Downloadable Report**: Exports analysis results directly into a structured CSV file.
+
+### 5. App Functionality
+ A video depicting the app's functionality is available at: https://youtu.be/p7lane6-f3g?si=74P1fBxfboHXPq-7
