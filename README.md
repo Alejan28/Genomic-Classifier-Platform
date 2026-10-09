@@ -122,7 +122,8 @@ from pyngrok import ngrok
 public_url = ngrok.connect(8501, proto="http")
 print(f"Stable App Link: {public_url.public_url}")
 ```
-
+### 5. App Functionality
+ A video depicting the app's functionality is available at: https://youtu.be/p7lane6-f3g?si=74P1fBxfboHXPq-7
 ---
 
 ## 💡 Features
