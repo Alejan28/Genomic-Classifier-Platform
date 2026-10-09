@@ -1,3 +1,36 @@
+#  Genomic Sequence Analysis & Feature Extraction (DataSet.ipby)
+
+This project provides an end-to-end computational pipeline for retrieving, preprocessing, visualizing, and engineering machine learning features from genomic sequences representing diverse taxonomic domains (Animals, Bacteria, and Plants).
+
+
+### 1. Data Acquisition & Taxonomy Guided Retrieval
+- **Target Groups**: Plant (`Viridiplantae`), Animal (`Metazoa`), and Bacteria.
+- **NCBI Nucleotide Queries**: Fetches RefSeq sequences dynamically based on Taxonomy IDs (`taxid`).
+- **Constraints**: Enforces physical limits (sequence length between 500 bp and 2000 bp) and retrieves random counts (300 to 500 sequences per species) to avoid class imbalance.
+- **Output**: Generates a raw dataset saved to `taxonomy_final_dataset.csv`.
+
+### 2. Exploratory Data Analysis (EDA)
+- **Dataset Balance**: Visualizes sequence counts per species to confirm representation.
+- **Sequence Length**: Validates the 500-2000 bp length constraint across all taxonomic targets using boxplots.
+- **GC Content**: Computes and compares GC percentages as a discriminative genomic characteristic.
+- **K-mer Frequency Distribution**: Uses 3-mer frequency profiling and generates a custom heatmap to uncover species-specific composition trends.
+
+### 3. Data Cleaning & Feature Engineering
+To convert raw genomic text into standard numerical tables suitable for downstream Machine Learning models:
+- **Standardization**: Forces character casing to uppercase and handles missing values.
+- **Validation**: Strict removal of degenerate base pairs by retaining sequences consisting strictly of standard nucleotides (`{A, T, C, G}`).
+- **Deduplication**: Removes exact duplicates from sequence collections.
+- **Feature Extraction**:
+  - **Mononucleotide Frequencies**: Frequencies of individual base pairs (`A_freq`, `T_freq`, `C_freq`, `G_freq`).
+  - **Dinucleotide Frequencies**: Relative frequencies of all 16 possible 2-base combinations (e.g., `AA`, `AT`, `CG`).
+- **Output**: Concatenates structural metrics and saves the engineered dataset to `classic_ml.csv`.
+
+### 4. Stratified Train-Test Splitting
+- **Stratification Strategy**: Combined labels are formed using `{domain_group}_{species}` to ensure the train-test partition contains highly proportional representations of species across groups.
+- **Split Ratio**: 80% Training set, 20% Testing set.
+- **Validation Plots**: Confirms split integrity with proportional representation validation plots for both high-level domains and low-level species.
+- **Outputs**: Produces `train_dataset.csv` and `test_dataset.csv` for downstream model training.
+
 # DNA Sequence Analysis via Multi-Task Deep Learning (MultiTaskCNNDev.ipyb)
 
 This repository/notebook implements and evaluates various Deep Learning and Hybrid Neural Network architectures to solve a biological multi-task classification problem: predicting both the **Species** and the **Domain Group** (Bacteria, Metazoa, Viridiplantae) directly from genomic DNA sequences.
